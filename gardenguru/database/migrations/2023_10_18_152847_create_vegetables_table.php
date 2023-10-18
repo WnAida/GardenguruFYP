@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('vegetables', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('name');
+            $table->text('description');
+            $table->text('note');
+            
             $table->timestamps();
         });
     }

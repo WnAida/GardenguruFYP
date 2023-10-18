@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('name');
+            $table->string('location');
+            $table->timestamp('planted_at');
+            $table->string('notes');
+            $table->enum('stage');
+            $table->integer('seed');
+            $table->text('photo_path');
             $table->timestamps();
         });
     }

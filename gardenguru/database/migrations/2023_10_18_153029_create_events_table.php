@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->enum('action');
+            $table->timestamps('do_at');
+            $table->unsignedBigInteger('schedule_id');
             $table->timestamps();
         });
     }

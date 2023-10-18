@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('transaction_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

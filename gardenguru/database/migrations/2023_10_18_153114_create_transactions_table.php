@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('seller_id');
+            $table->decimal('amount');
+            $table->string('bill_id');
+            $table->enum('status');
+            $table->string('transactionable_id');
+            $table->string('transactionable_type');
             $table->timestamps();
         });
     }

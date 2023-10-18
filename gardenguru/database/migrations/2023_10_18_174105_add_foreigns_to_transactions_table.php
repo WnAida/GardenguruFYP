@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sellers', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('bank_id');
-            $table->string('account_no');
-            $table->timestamps();
+        Schema::table('transactions', function (Blueprint $table) {
+            $table
+            ->foreign('seller_id')
+            ->references('id')
+            ->on('sellers')
+            ->onUpdate('CASCADE')
+            ->onDelete('CASCADE');
         });
     }
 
@@ -25,6 +26,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sellers');
+        Schema::table('transactions', function (Blueprint $table) {
+            //
+        });
     }
 };
