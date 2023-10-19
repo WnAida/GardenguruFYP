@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Bank;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,9 @@ class SellerFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id'=>User::inRandomOrder()->pluck('id')->first(),
+            'bank_id'=>Bank::inRandomOrder()->pluck('id')->first(),
+            'account_no' => $this->faker->randomDigit(),
         ];
     }
 }

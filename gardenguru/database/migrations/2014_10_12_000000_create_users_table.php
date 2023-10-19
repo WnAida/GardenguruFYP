@@ -16,13 +16,13 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            // $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('expertise', UserExpertiseEnum::toValues())->default(UserExpertiseEnum::Beginner());
-            $table->string('phone_number');
-            $table->text('address');
+            $table->string('phone_number')->nullable();
+            $table->text('address')->nullable();
             $table->text('profile_photo_path')->nullable();
-            $table->rememberToken();
+            // $table->rememberToken();
             $table->timestamps();
         });
     }

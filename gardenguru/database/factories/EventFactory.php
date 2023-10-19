@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Schedule;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class EventFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'do_at' => $this->faker->dateTime(),
+            'schedule_id'=>Schedule::inRandomOrder()->pluck('id')->first(),
         ];
     }
 }

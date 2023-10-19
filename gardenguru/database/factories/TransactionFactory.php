@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Seller;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'seller_id'=>Seller::inRandomOrder()->pluck('id')->first(),
+            'amount' => $this->faker->randomFloat(),
+            'transactionable_id' => $this->faker->word(),
+            'transactionable_type' => $this->faker->word(),
+
         ];
     }
 }

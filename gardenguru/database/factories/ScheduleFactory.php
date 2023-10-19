@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,13 @@ class ScheduleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'location' => $this->faker->word(),
+            'user_id'=>User::inRandomOrder()->pluck('id')->first(),
+            'planted_at' => $this->faker->dateTime(),
+            'notes'=>$this->faker->text(),
+            'seed'=> $this->faker->randomDigit(),
+            'photo_path'=> $this->faker->text(),
         ];
     }
 }

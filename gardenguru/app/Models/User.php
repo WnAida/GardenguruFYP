@@ -55,4 +55,26 @@ class User extends Authenticatable
     {
         return $this->hasMany(Vegetable::class);
     }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function sellers()
+    {
+        return $this->hasMany(Seller::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+
 }

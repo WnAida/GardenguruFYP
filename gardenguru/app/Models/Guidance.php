@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Guidance extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+    ];
+
+    public function vegetables()
+    {
+        return $this->belongsToMany(Vegetable::class);
+    }
+
 }
+

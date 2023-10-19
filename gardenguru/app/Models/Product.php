@@ -19,7 +19,7 @@ class Product extends Model
         'price',
         'min_order_qty',
         'photo_path',
-    ];
+    ]; 
 
     protected $casts = [
         'category' => ProductCategoryEnumEnum::class,
