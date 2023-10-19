@@ -19,7 +19,7 @@ class TransactionFactory extends Factory
     {
         return [
             'seller_id'=>Seller::inRandomOrder()->pluck('id')->first(),
-            'amount' => $this->faker->randomFloat(),
+            'amount' => $this->faker->randomNumber(2),
             'transactionable_id' => $this->faker->word(),
             'transactionable_type' => $this->faker->word(),
 

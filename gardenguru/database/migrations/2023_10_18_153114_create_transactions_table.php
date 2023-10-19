@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('seller_id');
-            $table->decimal('amount');
-            $table->string('bill_id');
+            $table->decimal('amount')->nullable();
+            $table->string('bill_id')->nullable();
             $table->enum('status',TransactionStatusEnum::toValues())->default(TransactionStatusEnum::Pending());
             $table->string('transactionable_id');
             $table->string('transactionable_type');

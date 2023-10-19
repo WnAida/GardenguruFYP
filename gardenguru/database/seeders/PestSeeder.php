@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Pest;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class PestSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Pest::factory(3)->create();
     }
 }

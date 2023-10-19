@@ -22,7 +22,7 @@ class ProductFactory extends Factory
             'user_id'=>User::inRandomOrder()->pluck('id')->first(),
             'description' => $this->faker->name(),
             'quantity'=>$this->faker->randomDigit(),
-            'price'=>$this->faker->randomFloat(),
+            'price'=>$this->faker->randomNumber(2),
             'min_order_qty'=>$this->faker->randomNumber(),
             'photo_path'=>$this->faker->text(),
 
