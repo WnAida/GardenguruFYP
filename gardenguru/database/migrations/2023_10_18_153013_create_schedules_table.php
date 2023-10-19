@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ScheduleStageEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,13 +13,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('schedules', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('location');
             $table->timestamp('planted_at');
             $table->string('notes');
-            $table->enum('stage');
+            $table->enum('stage', ScheduleStageEnum::toValues())->default(ScheduleStageEnum::Seedling());
             $table->integer('seed');
             $table->text('photo_path');
             $table->timestamps();

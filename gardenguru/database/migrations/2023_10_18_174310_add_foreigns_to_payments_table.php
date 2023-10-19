@@ -18,28 +18,21 @@ return new class extends Migration
             ->references('id')
             ->on('users')
             ->onUpdate('CASCADE')
-            ->onDelete('CASCADE'); 
+            ->onDelete('CASCADE');
 
             $table
             ->foreign('transaction_id')
             ->references('id')
             ->on('transactions')
             ->onUpdate('CASCADE')
-            ->onDelete('CASCADE'); 
-
-            $table
-            ->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onUpdate('CASCADE')
             ->onDelete('CASCADE');
-            
+
             $table
             ->foreign('product_id')
             ->references('id')
             ->on('products')
             ->onUpdate('CASCADE')
-            ->onDelete('CASCADE'); 
+            ->onDelete('CASCADE');
 
 
         });

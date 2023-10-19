@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('vegetables', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->text('description');
-            $table->text('note');
-            
+            $table->text('note')->nullable();
+
             $table->timestamps();
         });
     }
