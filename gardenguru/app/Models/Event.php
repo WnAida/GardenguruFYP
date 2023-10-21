@@ -26,4 +26,8 @@ class Event extends Model
     {
         return $this->BelongsTo(Schedule::class);
     }
+
+    public function getActionLabelAttribute(){
+        return EventActionEnum::from($this->attributes['action'])->label;
+    }
 }

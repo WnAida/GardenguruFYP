@@ -25,7 +25,8 @@ class PestResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name'),
+                TextInput::make('name')
+                ->label('Pest Name'),
             ]);
     }
 
@@ -33,7 +34,8 @@ class PestResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
+                TextColumn::make('name')
+                ->label('Pest Name'),
             ])
             ->filters([
                 //

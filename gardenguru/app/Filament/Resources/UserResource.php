@@ -18,6 +18,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\BadgeColumn;
 use Spatie\Enum\Laravel\Rules\EnumRule;
 
 class UserResource extends Resource
@@ -33,7 +34,16 @@ class UserResource extends Resource
                 TextInput::make('name'),
                 TextInput::make('email'),
                 TextInput::make('password'),
-                TextInput::make('phone_number'),
+                TextInput::make('phone_number')
+                            ->label('Phone Number')
+                            ->rules(['max:255', 'string'])
+                            ->required()
+                            ->placeholder('ex: +6012-345-6789')
+                            ->columnSpan([
+                                'default' => 2,
+                                'md' => 1,
+                                'lg' => 1,
+                            ]),
                 TextInput::make('address'),
                 Select::make ('expertise')
                 ->options(EnumMap::getUserExpertise())
@@ -55,7 +65,12 @@ class UserResource extends Resource
                 TextColumn::make('email'),
                 TextColumn::make('phone_number'),
                 TextColumn::make('address'),
-                TextColumn::make('expertise'),
+                BadgeColumn::make('expertise_label')
+                    ->colors([
+                        'primary' => UserExpertiseEnum::Beginner()->label,
+                        'primary' => UserExpertiseEnum::Intermediate()->label,
+                        'primary' => UserExpertiseEnum::Expert()->label,
+                    ]),
                 TextColumn::make('profile_photo_path'),
             ])
             ->filters([

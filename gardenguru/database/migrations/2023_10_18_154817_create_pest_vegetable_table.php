@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pest_vegetable', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->foreignId('pest_id');
+            $table->foreignId('vegetable_id');
         });
     }
 

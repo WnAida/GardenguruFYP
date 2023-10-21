@@ -20,6 +20,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\TextColumn;
 use Spatie\Enum\Laravel\Rules\EnumRule;
 
@@ -41,7 +42,7 @@ class ScheduleResource extends Resource
                 Select::make ('Action')
                 ->options(EnumMap::getScheduleStage())
                 ->rules([
-                    new EnumRule(ScheduleStageEnumEnum::class)
+                    new EnumRule(ScheduleStageEnum::class)
                 ])
                 ->disablePlaceholderSelection()
                 ->reactive(),
@@ -54,12 +55,22 @@ class ScheduleResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('user.name')
-                ->label('General User'),
-                TextColumn::make('name'),
+                ->label('User'),
+                TextColumn::make('name')
+                ->label('Plant Name'),
                 TextColumn::make('location'),
                 TextColumn::make('notes'),
                 TextColumn::make('planted_at'),
-                TextColumn::make('Action'),
+                BadgeColumn::make('stage_label')
+                    ->colors([
+                        'primary' => ScheduleStageEnum::Seedling()->label,
+                        'primary' => ScheduleStageEnum::Planted()->label,
+                        'primary' => ScheduleStageEnum::Sprout()->label,
+                        'primary' => ScheduleStageEnum::Flowering()->label,
+                        'primary' => ScheduleStageEnum::Ripening()->label,
+                        'primary' => ScheduleStageEnum::Harvested()->label,
+                    ])
+                    ->label('Plant Stage'),
             ])
             ->filters([
                 //

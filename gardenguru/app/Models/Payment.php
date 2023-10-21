@@ -15,9 +15,9 @@ class Payment extends Model
         'user_id',
     ];
 
-    public function vegetables()
+    public function product()
     {
-        return $this->belongsTo(Vegetable::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function transation()

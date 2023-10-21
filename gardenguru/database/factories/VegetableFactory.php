@@ -18,8 +18,8 @@ class VegetableFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'=>User::inRandomOrder()->pluck('id')->first(),
-            'name' => $this->faker->name(),
+            // 'user_id'=>User::inRandomOrder()->pluck('id')->first(),
+            'name' => $this->faker->text(10),
             'description' => $this->faker->text(),
             'note'=>$this->faker->text(),
         ];

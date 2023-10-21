@@ -76,5 +76,8 @@ class User extends Authenticatable
         return $this->hasMany(Transaction::class);
     }
 
+    public function getExpertiseLabelAttribute(){
+        return UserExpertiseEnum::from($this->attributes['expertise'])->label;
+    }
 
 }

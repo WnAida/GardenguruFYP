@@ -6,6 +6,7 @@ use App\Filament\Resources\GuidanceResource\Pages;
 use App\Filament\Resources\GuidanceResource\RelationManagers;
 use App\Models\Guidance;
 use Filament\Forms;
+use Filament\Forms\Components\Textarea;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -25,7 +26,9 @@ class GuidanceResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name'),
+
+                Textarea::make('name')
+                ->label('Guidance'),
             ]);
     }
 
@@ -33,7 +36,10 @@ class GuidanceResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
+                // TextColumn::make('vegetable.name')
+                // ->label('Vegetable Plant Name'),
+                TextColumn::make('name')
+                ->label('Guidances'),
             ])
             ->filters([
                 //

@@ -22,6 +22,12 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->text('address')->nullable();
             $table->text('profile_photo_path')->nullable();
+            // $table->boolean('is_seller')->nullable();
+            // $table->unsignedBigInteger('bank_id')->nullable();
+            // $table->string('account_no')->nullable();
+
+
+
             // $table->rememberToken();
             $table->timestamps();
         });

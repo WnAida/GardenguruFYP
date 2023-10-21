@@ -19,7 +19,7 @@ class Product extends Model
         'price',
         'min_order_qty',
         'photo_path',
-    ]; 
+    ];
 
     protected $casts = [
         'category' => ProductCategoryEnumEnum::class,
@@ -33,5 +33,9 @@ class Product extends Model
     public function payment()
     {
         return $this->hasOne(Payment::class);
+    }
+
+    public function getCategoryLabelAttribute(){
+        return ProductCategoryEnum::from($this->attributes['category'])->label;
     }
 }

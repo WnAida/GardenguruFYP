@@ -2,8 +2,10 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\ProductCategoryEnum;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Helpers\EnumMap;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -12,6 +14,10 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\BadgeColumn;
+use Spatie\Enum\Laravel\Rules\EnumRule;
 
 class ProductResource extends Resource
 {
@@ -23,7 +29,13 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Select::make('category')
+                    ->options(EnumMap::getUserExpertise())
+                    ->rules([
+                        new EnumRule(ProductCategoryEnum::class)
+                    ])
+                    ->disablePlaceholderSelection()
+                    ->reactive(),
             ]);
     }
 
@@ -31,7 +43,19 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('user.name')
+                    ->label('Seller'),
+                TextColumn::make('name')
+                    ->label('Product'),
+                TextColumn::make('description')->limit(15),
+                TextColumn::make('quantity'),
+                BadgeColumn::make('category_label')
+                    ->colors([
+                        'primary' => ProductCategoryEnum::Seed()->label,
+                        'primary' => ProductCategoryEnum::Fertilizer()->label,
+                    ]),
+                TextColumn::make('price')
+                    ->money('myr', true),
             ])
             ->filters([
                 //
@@ -43,14 +67,14 @@ class ProductResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -58,5 +82,5 @@ class ProductResource extends Resource
             'create' => Pages\CreateProduct::route('/create'),
             'edit' => Pages\EditProduct::route('/{record}/edit'),
         ];
-    }    
+    }
 }

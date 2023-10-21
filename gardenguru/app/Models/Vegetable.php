@@ -10,16 +10,16 @@ class Vegetable extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        // 'user_id',
         'name',
         'description',
         'note',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 
     public function pests()
     {
@@ -28,7 +28,7 @@ class Vegetable extends Model
 
     public function guidances()
     {
-        return $this->belongsToMany(guidances::class);
+        return $this->belongsToMany(Guidance::class);
     }
 
 }

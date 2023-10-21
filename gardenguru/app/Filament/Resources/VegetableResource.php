@@ -26,10 +26,13 @@ class VegetableResource extends Resource
     {
         return $form
             ->schema([
-                // TextInput::make('user_id'),
+                // TextInput::make('user.created_at'),
                 TextInput::make('name'),
                 TextArea::make('description'),
+                // TextArea::make('guidances.name')
+                // ->label('Guidance'),
                 TextArea::make('note'),
+
             ]);
     }
 
@@ -37,11 +40,12 @@ class VegetableResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('user.name')
-                ->label('Admin In Charge'),
-                TextColumn::make('name'),
-                TextColumn::make('description'),
-                TextColumn::make('note'),
+                TextColumn::make('name')
+                ->label('Vegetable Name'),
+                TextColumn::make('description')->limit(15),
+                // TextColumn::make('note'),
+                // TextColumn::make('guidances.name'),
+                // TextColumn::make('pests.name'),
             ])
             ->filters([
                 //

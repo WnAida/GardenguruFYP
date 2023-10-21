@@ -35,4 +35,9 @@ class Schedule extends Model
     {
         return $this->belongsTo(Event::class);
     }
+
+
+    public function getStageLabelAttribute(){
+        return ScheduleStageEnum::from($this->attributes['stage'])->label;
+    }
 }

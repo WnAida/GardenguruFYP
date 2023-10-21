@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::table('vegetables', function (Blueprint $table) {
             //
-            $table
-            ->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onUpdate('CASCADE')
-            ->onDelete('CASCADE'); 
+            // $table
+            // ->foreign('user_id')
+            // ->references('id')
+            // ->on('users')
+            // ->onUpdate('CASCADE')
+            // ->onDelete('CASCADE');
         });
     }
 
