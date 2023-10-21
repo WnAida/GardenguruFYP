@@ -15,4 +15,20 @@ class Vegetable extends Model
         'description',
         'note',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function pests()
+    {
+        return $this->belongsToMany(Pest::class);
+    }
+
+    public function guidances()
+    {
+        return $this->belongsToMany(guidances::class);
+    }
+
 }

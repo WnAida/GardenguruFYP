@@ -12,6 +12,9 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\Textarea;
 
 class VegetableResource extends Resource
 {
@@ -23,7 +26,10 @@ class VegetableResource extends Resource
     {
         return $form
             ->schema([
-                //
+                // TextInput::make('user_id'),
+                TextInput::make('name'),
+                TextArea::make('description'),
+                TextArea::make('note'),
             ]);
     }
 
@@ -31,7 +37,11 @@ class VegetableResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('user.name')
+                ->label('Admin In Charge'),
+                TextColumn::make('name'),
+                TextColumn::make('description'),
+                TextColumn::make('note'),
             ])
             ->filters([
                 //
@@ -43,14 +53,14 @@ class VegetableResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -58,5 +68,5 @@ class VegetableResource extends Resource
             'create' => Pages\CreateVegetable::route('/create'),
             'edit' => Pages\EditVegetable::route('/{record}/edit'),
         ];
-    }    
+    }
 }

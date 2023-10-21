@@ -2,16 +2,26 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\EventActionEnum;
+use App\Enums\ScheduleStageEnum;
 use App\Filament\Resources\ScheduleResource\Pages;
 use App\Filament\Resources\ScheduleResource\RelationManagers;
+use App\Helpers\EnumMap;
 use App\Models\Schedule;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\TextColumn;
+use Spatie\Enum\Laravel\Rules\EnumRule;
 
 class ScheduleResource extends Resource
 {
@@ -23,7 +33,19 @@ class ScheduleResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('name'),
+                TextInput::make('location'),
+                TextArea::make('notes'),
+                DatePicker::make('planted_at'),
+                TextInput::make('Seed'),
+                Select::make ('Action')
+                ->options(EnumMap::getScheduleStage())
+                ->rules([
+                    new EnumRule(ScheduleStageEnumEnum::class)
+                ])
+                ->disablePlaceholderSelection()
+                ->reactive(),
+
             ]);
     }
 
@@ -31,7 +53,13 @@ class ScheduleResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('user.name')
+                ->label('General User'),
+                TextColumn::make('name'),
+                TextColumn::make('location'),
+                TextColumn::make('notes'),
+                TextColumn::make('planted_at'),
+                TextColumn::make('Action'),
             ])
             ->filters([
                 //
@@ -43,14 +71,14 @@ class ScheduleResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -58,5 +86,5 @@ class ScheduleResource extends Resource
             'create' => Pages\CreateSchedule::route('/create'),
             'edit' => Pages\EditSchedule::route('/{record}/edit'),
         ];
-    }    
+    }
 }
