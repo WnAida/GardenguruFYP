@@ -5,7 +5,10 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\SellerResource\Pages;
 use App\Filament\Resources\SellerResource\RelationManagers;
 use App\Models\Seller;
+use App\Models\User;
+use App\Models\Vegetable;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -27,8 +30,12 @@ class SellerResource extends Resource
         return $form
             ->schema([
 
-                // TextInput::make('user.name'),
-                // TextInput::make('user.phone_number'),
+                Select::make('user')
+                ->label('Select User')
+                ->options(User::pluck('name', 'id'))
+                ->searchable()
+                ->multiple()
+                ->placeholder('choose user to register as seller'),
                 TextInput::make('account_no'),
                 // Textarea::make('user.address'),
 
