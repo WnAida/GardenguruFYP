@@ -5,7 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PestResource\Pages;
 use App\Filament\Resources\PestResource\RelationManagers;
 use App\Models\Pest;
+use App\Models\Vegetable;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -25,8 +27,13 @@ class PestResource extends Resource
     {
         return $form
             ->schema([
+                Select::make('vegetable')
+                ->label('Vegetable Plant Name')
+                ->options(Vegetable::pluck('name', 'id'))
+                ->searchable()
+                ->multiple(),
                 TextInput::make('name')
-                ->label('Pest Name'),
+                ->label('Pest'),
             ]);
     }
 

@@ -5,7 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\GuidanceResource\Pages;
 use App\Filament\Resources\GuidanceResource\RelationManagers;
 use App\Models\Guidance;
+use App\Models\Vegetable;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -26,9 +28,14 @@ class GuidanceResource extends Resource
     {
         return $form
             ->schema([
+                Select::make('vegetable')
+                    ->label('Vegetable Plant Name')
+                    ->options(Vegetable::pluck('name', 'id'))
+                    ->searchable()
+                    ->multiple(),
 
                 Textarea::make('name')
-                ->label('Guidance'),
+                    ->label('Guidance'),
             ]);
     }
 
@@ -36,10 +43,11 @@ class GuidanceResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('name')
+                    ->label('Guidances'),
                 // TextColumn::make('vegetable.name')
                 // ->label('Vegetable Plant Name'),
-                TextColumn::make('name')
-                ->label('Guidances'),
+
             ])
             ->filters([
                 //
