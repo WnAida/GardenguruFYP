@@ -41,6 +41,8 @@ class PestResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('vegetables.name')
+                ->label('vegetable'),
                 TextColumn::make('name')
                 ->label('Pest Name'),
             ])

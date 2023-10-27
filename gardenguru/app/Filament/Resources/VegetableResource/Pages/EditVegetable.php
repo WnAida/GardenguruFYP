@@ -10,6 +10,12 @@ class EditVegetable extends EditRecord
 {
     protected static string $resource = VegetableResource::class;
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getURL('index');
+    }
+
+
     protected function getActions(): array
     {
         return [

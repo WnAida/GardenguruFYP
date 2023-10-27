@@ -10,6 +10,11 @@ class EditSchedule extends EditRecord
 {
     protected static string $resource = ScheduleResource::class;
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getURL('index');
+    }
+
     protected function getActions(): array
     {
         return [
