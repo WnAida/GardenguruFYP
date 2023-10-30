@@ -29,12 +29,22 @@ class EditPest extends EditRecord
             $pest = Pest::find($data['id']);
 
             //Vegetables
-            $pest_array = [];
-            foreach ($pest->vegetables ?? [] as $pest) {
-                $pest_array[] = $pest->id;
+            $vegetable_array = [];
+            foreach ($pest->vegetables ?? [] as $vegetable) {
+                $vegetable_array[] = $vegetable->id;
             }
-            $data['pest'] = $pest_array ?? null;
+            $data['vegetable'] = $vegetable_array ?? null;
         }
         return $data;
+    }
+
+    protected function handleRecordUpdate($record, array $data): Pest
+    {
+        $pest = Pest::find($record['id']);
+        //belongs to many relationship
+        $pest->vegetables()->sync($data['vegetable']);
+        $pest->update();
+
+        return $record;
     }
 }

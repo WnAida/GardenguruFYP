@@ -37,4 +37,14 @@ class EditGuidance extends EditRecord
         }
         return $data;
     }
+
+    protected function handleRecordUpdate($record, array $data): Guidance
+    {
+        $guidance = Guidance::find($record['id']);
+        //belongs to many relationship
+        $guidance->vegetables()->sync($data['vegetable']);
+        $guidance->update();
+
+        return $record;
+    }
 }
