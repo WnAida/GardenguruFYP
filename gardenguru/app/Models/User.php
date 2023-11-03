@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Enums\RegistrationStatusEnum;
 use App\Enums\UserExpertiseEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -28,6 +29,7 @@ class User extends Authenticatable
         'address',
         'profile_photo_path',
         'expertise',
+        'registration_status',
     ];
 
     /**
@@ -49,6 +51,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'expertise' => UserExpertiseEnum::class,
+        'registration_status' => RegistrationStatusEnum::class,
     ];
 
     public function vegetables()
@@ -78,6 +81,10 @@ class User extends Authenticatable
 
     public function getExpertiseLabelAttribute(){
         return UserExpertiseEnum::from($this->attributes['expertise'])->label;
+    }
+
+    public function getRegistrationStatusLabelAttribute(){
+        return RegistrationStatusEnum::from($this->attributes['registration_status'])->label;
     }
 
 }

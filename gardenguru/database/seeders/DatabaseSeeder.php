@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Enums\RegistrationStatusEnum;
 use App\Models\Bank;
 use App\Models\Event;
 use App\Models\Guidance;
@@ -28,6 +29,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin123@admin.com',
             'password' => 'admin',
             'phone_number' => '111',
+            'registration_status' => RegistrationStatusEnum::Approved(),
+            'email_verified_at' => now(),
         ]);
 
         $this->call(BankSeeder::class);

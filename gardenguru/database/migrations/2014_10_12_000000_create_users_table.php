@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\RegistrationStatusEnum;
 use App\Enums\UserExpertiseEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,9 +17,10 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
-            // $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('expertise', UserExpertiseEnum::toValues())->default(UserExpertiseEnum::Beginner());
+            $table->enum('registration_status', RegistrationStatusEnum::toValues())->default(RegistrationStatusEnum::WaitingApproval());
             $table->string('phone_number')->nullable();
             $table->text('address')->nullable();
             $table->text('profile_photo_path')->nullable();
@@ -28,7 +30,7 @@ return new class extends Migration
 
 
 
-            // $table->rememberToken();
+            $table->string('remember_token', 100)->nullable();
             $table->timestamps();
         });
     }
