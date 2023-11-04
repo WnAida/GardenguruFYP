@@ -20,7 +20,7 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->text(10),
             'user_id'=>User::inRandomOrder()->pluck('id')->first(),
-            'description' => $this->faker->name(),
+            'description' => $this->faker->text(20),
             'quantity'=>$this->faker->randomDigit(),
             'price'=>$this->faker->randomNumber(2),
             'min_order_qty'=>$this->faker->randomNumber(),

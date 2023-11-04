@@ -15,7 +15,6 @@ class EditVegetable extends EditRecord
         return $this->getResource()::getURL('index');
     }
 
-
     protected function getActions(): array
     {
         return [

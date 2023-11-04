@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\v1\AuthController;
+use App\Http\Controllers\v1\PestController;
+use App\Http\Controllers\v1\ProductController;
+use App\Http\Controllers\v1\ScheduleController;
+use App\Http\Resources\v1\VegetableResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +21,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
+
+Route::name('api.')
+    ->middleware('auth:sanctum')
+    ->group(function () {
+        //this use for display profile
+        // Route::get('/me', [AuthController::class, 'me']);
+        Route::get('/pest', [PestController::class, 'index']);
+        Route::get('/vegetable', [VegetableResource::class, 'index']);
+        Route::get('/schedule', [ScheduleController::class, 'index']);
+        Route::get('/product', [ProductController::class, 'index']);
+        // Route::get('/firstaidstep', [FirstAidStepController::class, 'index']);
+        // Route::get('/medicationreminder', [MedicationReminderController::class, 'index']);
+        // // Route::get('/patient', [PatientController::class, 'index']);
+        // Route::get('/emergencycontact', [EmergencyContactController::class, 'index']);
+        // Route::get('/tracking', [TrackingController::class, 'index']);
+        // // Route::get('/allergen', [AllergenController::class, 'index']);
+
+    });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

@@ -11,6 +11,11 @@ class CreateSeller extends CreateRecord
 {
     protected static string $resource = SellerResource::class;
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getURL('index');
+    }
+
     protected function handleRecordCreation(array $data): Seller
     {
         $seller = new Seller();
