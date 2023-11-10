@@ -4,6 +4,7 @@ use App\Http\Controllers\v1\AuthController;
 use App\Http\Controllers\v1\PestController;
 use App\Http\Controllers\v1\ProductController;
 use App\Http\Controllers\v1\ScheduleController;
+use App\Http\Controllers\v1\VegetableController;
 use App\Http\Resources\v1\VegetableResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,12 +26,26 @@ Route::post('register', [AuthController::class, 'register']);
 Route::name('api.')
     ->middleware('auth:sanctum')
     ->group(function () {
+
         //this use for display profile
-        // Route::get('/me', [AuthController::class, 'me']);
+        Route::get('/me', [AuthController::class, 'me']);
+
+        //Pest
         Route::get('/pest', [PestController::class, 'index']);
-        Route::get('/vegetable', [VegetableResource::class, 'index']);
+
+        //Vegetable
+        Route::get('/vegetable', [VegetableController::class, 'index']);
+        Route::get('/vegetable/{vegetable}', [VegetableController::class, 'show']);
+
+        //Schedule
         Route::get('/schedule', [ScheduleController::class, 'index']);
+        Route::post('/schedule', [ScheduleController::class, 'store']);
+        Route::put('/schedule/{schedule}', [ScheduleController::class, 'update']);
+
+        //Product
         Route::get('/product', [ProductController::class, 'index']);
+
+
         // Route::get('/firstaidstep', [FirstAidStepController::class, 'index']);
         // Route::get('/medicationreminder', [MedicationReminderController::class, 'index']);
         // // Route::get('/patient', [PatientController::class, 'index']);

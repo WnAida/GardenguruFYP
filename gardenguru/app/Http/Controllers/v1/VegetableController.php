@@ -24,4 +24,10 @@ class VegetableController extends Controller
 
         return $this->return_paginated_api(true, Response::HTTP_OK, null, VegetableResource::collection($data), null, $this->apiPaginator($data));
     }
+
+    public function show(Vegetable $vegetable)
+    {
+        $data = Vegetable::find($vegetable->id);
+        return $this->return_api(true, Response::HTTP_OK, null, new VegetableResource($data), null, null);
+    }
 }
