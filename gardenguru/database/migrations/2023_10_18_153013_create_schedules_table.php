@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('notes');
             $table->enum('stage', ScheduleStageEnum::toValues())->default(ScheduleStageEnum::Seedling());
             $table->integer('seed');
-            $table->text('photo_path');
+            $table->text('photo_path')->nullable();
             $table->timestamps();
         });
     }

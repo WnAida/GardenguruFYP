@@ -31,7 +31,7 @@ class ScheduleStoreRequest extends FormRequest
             'notes' => 'required|string',
             'stage' => ['required', new EnumRule(ScheduleStageEnum::class)],
             'seed' => 'required|numeric',
-            'photo_path' => ['file|mimes:png,jpg,jpeg', 'max:1000', 'nullable'],
+            // 'photo_path' => ['file|mimes:png,jpg,jpeg', 'max:1000', 'nullable'],
         ];
     }
 }

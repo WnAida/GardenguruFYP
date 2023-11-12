@@ -38,8 +38,8 @@ Route::name('api.')
         Route::get('/vegetable/{vegetable}', [VegetableController::class, 'show']);
 
         //Schedule
-        Route::get('/schedule', [ScheduleController::class, 'index']);
-        Route::post('/schedule', [ScheduleController::class, 'store']);
+        Route::get('/schedules', [ScheduleController::class, 'index']);
+        Route::post('/schedules', [ScheduleController::class, 'store']);
         Route::put('/schedule/{schedule}', [ScheduleController::class, 'update']);
 
         //Product
