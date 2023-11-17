@@ -22,7 +22,7 @@ class Product extends Model
     ];
 
     protected $casts = [
-        'category' => ProductCategoryEnumEnum::class,
+        'category' => ProductCategoryEnum::class,
     ];
 
     public function user()

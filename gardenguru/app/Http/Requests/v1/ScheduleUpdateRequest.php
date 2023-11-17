@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\v1;
 
+use App\Enums\ScheduleStageEnum;
 use Illuminate\Foundation\Http\FormRequest;
+use Spatie\Enum\Laravel\Rules\EnumRule;
 
 class ScheduleUpdateRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class ScheduleUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +23,16 @@ class ScheduleUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+
+            return [
+                // 'user_id'=> 'required|numeric|exists:users,id',
+                'name' => 'required|string',
+                'location' => 'required|string',
+                'planted_at' => 'required|string',
+                'notes' => 'required|string',
+                'stage' => ['required', new EnumRule(ScheduleStageEnum::class)],
+                'seed' => 'required|numeric',
+                // 'photo_path' => ['file|mimes:png,jpg,jpeg', 'max:1000', 'nullable'],
+            ];
     }
 }

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('category',ProductCategoryEnum::toValues())->default(ProductCategoryEnum::Fertilizer());
             $table->decimal('price');
             $table->integer('min_order_qty');
-            $table->text('photo_path');
+            $table->text('photo_path')->nullable();
             $table->timestamps();
         });
     }

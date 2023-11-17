@@ -29,6 +29,7 @@ Route::name('api.')
 
         //this use for display profile
         Route::get('/me', [AuthController::class, 'me']);
+        Route::put('/user/{user}', [AuthController::class, 'update']);
 
         //Pest
         Route::get('/pest', [PestController::class, 'index']);
@@ -44,6 +45,9 @@ Route::name('api.')
 
         //Product
         Route::get('/product', [ProductController::class, 'index']);
+        Route::get('/product/{product}', [ProductController::class, 'show']);
+        Route::post('/product', [ProductController::class, 'store']);
+        Route::put('/product/{product}', [ProductController::class, 'update']);
 
 
         // Route::get('/firstaidstep', [FirstAidStepController::class, 'index']);

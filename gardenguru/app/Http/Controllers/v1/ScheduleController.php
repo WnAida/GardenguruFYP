@@ -4,6 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\ScheduleStoreRequest;
+use App\Http\Requests\v1\ScheduleUpdateRequest;
 use App\Http\Resources\v1\ScheduleResource;
 use App\Models\Schedule;
 use App\Traits\ApiPaginatorTrait;
@@ -25,11 +26,12 @@ class ScheduleController extends Controller
         return $this->return_paginated_api(true, Response::HTTP_OK, null, ScheduleResource::collection($data), null, $this->apiPaginator($data));
     }
 
+    //STORE
     public function store(ScheduleStoreRequest $request)
     {
         $validated = $request->validated();
 
-        try {
+
             // if ($request->hasFile('photo_path')){
             //     $photoPath = $request->file('photo_path')->store('', 'schedule');
             //     $validated['photo_path'] = $photoPath;
@@ -40,13 +42,17 @@ class ScheduleController extends Controller
             $schedule = Auth::user()->schedules()->create($validated);
 
             return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
-        } catch (Exception $e) {
-            error_log($e);
-            return $this->return_api(false, Response::HTTP_INTERNAL_SERVER_ERROR, null, null, null);
-        }
     }
 
-    public function update()
+    //UPDATE
+    public function update(ScheduleUpdateRequest $request,Schedule $schedule)
     {
+        $validated=$request->validated();
+        $id=Schedule::find($schedule->id);
+        // dd($id);
+        $schedule=$id->update($validated);
+
+        return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
+
     }
 }

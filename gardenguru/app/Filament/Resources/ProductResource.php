@@ -21,6 +21,8 @@ use Spatie\Enum\Laravel\Rules\EnumRule;
 
 class ProductResource extends Resource
 {
+    protected static ?string $navigationLabel = 'Seller Product';
+
     protected static ?string $model = Product::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';

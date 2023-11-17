@@ -12,6 +12,8 @@ use Illuminate\Http\Response;
 class VegetableController extends Controller
 {
     use ApiPaginatorTrait;
+
+    
     public function index()
     {
         $take = request()->get('take', 1000);
