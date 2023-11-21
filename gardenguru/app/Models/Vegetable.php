@@ -14,6 +14,7 @@ class Vegetable extends Model
         'name',
         'description',
         'note',
+        'photo',
     ];
 
     // public function user()

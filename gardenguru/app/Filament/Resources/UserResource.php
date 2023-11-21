@@ -23,9 +23,11 @@ use Spatie\Enum\Laravel\Rules\EnumRule;
 
 class UserResource extends Resource
 {
+    protected static ?string $navigationGroup = 'User';
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+
 
     public static function form(Form $form): Form
     {
@@ -64,14 +66,16 @@ class UserResource extends Resource
                 TextColumn::make('name'),
                 TextColumn::make('email'),
                 TextColumn::make('phone_number'),
-                TextColumn::make('address'),
+                TextColumn::make('address')
+                ->limit(15),
                 BadgeColumn::make('expertise_label')
                     ->colors([
                         'primary' => UserExpertiseEnum::Beginner()->label,
                         'primary' => UserExpertiseEnum::Intermediate()->label,
                         'primary' => UserExpertiseEnum::Expert()->label,
                     ]),
-                TextColumn::make('profile_photo_path'),
+                TextColumn::make('profile_photo_path')
+                ->limit(10),
             ])
             ->filters([
                 //

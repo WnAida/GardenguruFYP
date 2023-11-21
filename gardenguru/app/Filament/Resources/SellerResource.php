@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class SellerResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Seller';
     protected static ?string $model = Seller::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
@@ -52,7 +53,8 @@ class SellerResource extends Resource
                 ->label('Phone Number'),
                 TextColumn::make('account_no'),
                 TextColumn::make('user.address')
-                ->label('Address'),
+                ->label('Address')
+                ->limit(15),
             ])
             ->filters([
                 //

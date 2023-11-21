@@ -13,4 +13,9 @@ class ProductPolicy
     {
         return false;
     }
+
+    public function update(User $user): bool
+    {
+        return false;
+    }
 }

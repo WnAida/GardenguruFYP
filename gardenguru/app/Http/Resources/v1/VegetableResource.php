@@ -18,6 +18,7 @@ class VegetableResource extends JsonResource
             'name'=> $this->name,
             'description'=> $this->description,
             'note'=> $this->note,
+            'photo'=> $this->photo,
             'pests' => PestResource::collection($this->pests),
             'guidances' => GuidanceResource::collection($this->guidances),
         ];

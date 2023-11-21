@@ -22,6 +22,7 @@ class VegetableFactory extends Factory
             'name' => $this->faker->text(10),
             'description' => $this->faker->text(),
             'note'=>$this->faker->text(),
+            'photo'=>$this->faker->text(),
         ];
     }
 }

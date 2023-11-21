@@ -20,7 +20,9 @@ use Filament\Tables\Columns\TextColumn;
 
 class GuidanceResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Vegetable Information';
     protected static ?string $model = Guidance::class;
+    protected static bool $shouldRegisterNavigation = false;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\SellerResource\Pages;
 
 use App\Filament\Resources\SellerResource;
+use App\Models\Seller;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
@@ -20,5 +21,18 @@ class EditSeller extends EditRecord
         return [
             Actions\DeleteAction::make(),
         ];
+    }
+
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        return $data;
+    }
+
+    protected function handleRecordUpdate($record, array $data): Seller
+    {
+        $seller = Seller::find($record['id']);
+        $seller->update($data);
+
+        return $record;
     }
 }

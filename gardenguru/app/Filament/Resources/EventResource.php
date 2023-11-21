@@ -21,16 +21,17 @@ use Filament\Tables\Columns\BadgeColumn;
 
 class EventResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Schedule Tracking';
     protected static ?string $model = Event::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-clock';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([ //
 
-                Select::make ('Action')
+                Select::make ('action')
                 ->options(EnumMap::getEventAction())
                 ->rules([
                     new EnumRule(EventActionEnum::class)
@@ -45,11 +46,12 @@ class EventResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('schedule.name')
-                ->label('Plant Name'),
+                ->label('User Name')
+                ->limit(10),
                 TextColumn::make('schedule.planted_at')
                 ->label('Plant Planted Date'),
-                TextColumn::make('schedule.location')
-                ->label('Location'),
+                // TextColumn::make('schedule.location')
+                // ->label('Location'),
                 TextColumn::make('schedule.stage_label')
                 ->label('Plant Stage'),
                 BadgeColumn::make('action_label')

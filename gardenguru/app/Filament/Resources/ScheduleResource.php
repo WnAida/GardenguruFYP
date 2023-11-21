@@ -26,9 +26,9 @@ use Spatie\Enum\Laravel\Rules\EnumRule;
 
 class ScheduleResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Schedule Tracking';
     protected static ?string $model = Schedule::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-archive';
 
     public static function form(Form $form): Form
     {
@@ -59,7 +59,7 @@ class ScheduleResource extends Resource
                 TextColumn::make('name')
                 ->label('Plant Name'),
                 TextColumn::make('location'),
-                TextColumn::make('notes'),
+                TextColumn::make('notes')->limit(1),
                 TextColumn::make('planted_at'),
                 BadgeColumn::make('stage_label')
                     ->colors([

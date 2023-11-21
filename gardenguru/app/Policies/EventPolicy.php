@@ -13,4 +13,10 @@ class EventPolicy
     {
         return false;
     }
+
+
+    public function update(User $user): bool
+    {
+        return false;
+    }
 }

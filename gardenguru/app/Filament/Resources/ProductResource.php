@@ -21,7 +21,11 @@ use Spatie\Enum\Laravel\Rules\EnumRule;
 
 class ProductResource extends Resource
 {
-    protected static ?string $navigationLabel = 'Seller Product';
+    protected static ?string $navigationGroup = 'Seller';
+    public static function getPluralModelLabel(): string
+    {
+        return __('Seller Product');
+    }
 
     protected static ?string $model = Product::class;
 

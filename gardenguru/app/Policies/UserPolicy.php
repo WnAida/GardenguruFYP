@@ -3,11 +3,9 @@
 namespace App\Policies;
 
 use App\Models\User;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SchedulePolicy
+class UserPolicy
 {
-    use HandlesAuthorization;
 
     public function create(User $user): bool
     {

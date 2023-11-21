@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PestResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Vegetable Information';
     protected static ?string $model = Pest::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
