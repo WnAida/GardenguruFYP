@@ -81,6 +81,8 @@ return array(
     'Laravel\\Sail\\' => array($vendorDir . '/laravel/sail/src'),
     'Laravel\\Prompts\\' => array($vendorDir . '/laravel/prompts/src'),
     'Laravel\\Fortify\\' => array($vendorDir . '/laravel/fortify/src'),
+    'JeffGreco13\\FilamentBreezy\\Database\\Factories\\' => array($vendorDir . '/jeffgreco13/filament-breezy/database/factories'),
+    'JeffGreco13\\FilamentBreezy\\' => array($vendorDir . '/jeffgreco13/filament-breezy/src'),
     'Illuminate\\Support\\' => array($vendorDir . '/laravel/framework/src/Illuminate/Macroable', $vendorDir . '/laravel/framework/src/Illuminate/Collections', $vendorDir . '/laravel/framework/src/Illuminate/Conditionable'),
     'Illuminate\\' => array($vendorDir . '/laravel/framework/src/Illuminate'),
     'HtmlSanitizer\\' => array($vendorDir . '/tgalopin/html-sanitizer/src'),
