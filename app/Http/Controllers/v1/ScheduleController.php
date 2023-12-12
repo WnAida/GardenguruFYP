@@ -55,4 +55,11 @@ class ScheduleController extends Controller
         return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
 
     }
+
+    //show
+    public function show(Schedule $schedule)
+    {
+        $data = Schedule::find($schedule->id);
+        return $this->return_api(true, Response::HTTP_OK, null, new ScheduleResource($data), null, null);
+    }
 }

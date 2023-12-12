@@ -41,7 +41,8 @@ Route::name('api.')
         //Schedule
         Route::get('/schedules', [ScheduleController::class, 'index']);
         Route::post('/schedules', [ScheduleController::class, 'store']);
-        Route::put('/schedule/{schedule}', [ScheduleController::class, 'update']);
+        Route::put('/schedule/{schedule}/update', [ScheduleController::class, 'update']);
+        Route::get('/schedule/{schedule}', [ScheduleController::class, 'show']);
 
         //Product
         Route::get('/product', [ProductController::class, 'index']);
