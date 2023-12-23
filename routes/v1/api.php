@@ -27,6 +27,9 @@ Route::name('api.')
     ->middleware('auth:sanctum')
     ->group(function () {
 
+        //User registration
+        Route::post('/register', [AuthController::class, 'register']);
+
         //this use for display profile
         Route::get('/me', [AuthController::class, 'me']);
         Route::put('/user/{user}', [AuthController::class, 'update']);
@@ -51,15 +54,7 @@ Route::name('api.')
         Route::put('/product/{product}', [ProductController::class, 'update']);
 
 
-        // Route::get('/firstaidstep', [FirstAidStepController::class, 'index']);
-        // Route::get('/medicationreminder', [MedicationReminderController::class, 'index']);
-        // // Route::get('/patient', [PatientController::class, 'index']);
-        // Route::get('/emergencycontact', [EmergencyContactController::class, 'index']);
-        // Route::get('/tracking', [TrackingController::class, 'index']);
-        // // Route::get('/allergen', [AllergenController::class, 'index']);
 
     });
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+

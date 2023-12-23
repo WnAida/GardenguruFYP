@@ -32,7 +32,7 @@ class ProfileUpdateRequest extends FormRequest
             'address'=>'required|string',
             // 'profile_photo_path'=>'required|string',
             'expertise'=>['required', new EnumRule(UserExpertiseEnum::class)],
-            'registration_status'=>['required', new EnumRule(RegistrationStatusEnum::class)],
+            // 'registration_status'=>['required', new EnumRule(RegistrationStatusEnum::class)],
         ];
     }
 }

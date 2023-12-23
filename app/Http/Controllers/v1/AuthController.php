@@ -86,8 +86,40 @@ class AuthController extends Controller
         }
     }
 
-    public function register(){
+    public function register(Request $request)
+    {
+        // Validation logic for registration inputs
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:8',
+            'phone_number' => 'nullable|string',
+            'address' => 'nullable|string',
+            'profile_photo_path' => 'nullable|string',
+            'expertise' => 'nullable|string',
+        ]);
 
+        // Create a new user
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'phone_number' => $request->input('phone_number'),
+            'address' => $request->input('address'),
+            'profile_photo_path' => $request->input('profile_photo_path'),
+            'expertise' => $request->input('expertise'),
+        ]);
+
+
+
+        // Generate token for the registered user
+        $token = $user->createToken('registration-token')->plainTextToken;
+
+        // Return a response with the user and token information
+        return response()->json([
+            'user' => $user,
+            'token' => $token,
+        ], 201);
     }
 
     //UPDATE
