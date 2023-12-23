@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('expertise', UserExpertiseEnum::toValues())->default(UserExpertiseEnum::Beginner());
-            $table->enum('registration_status', RegistrationStatusEnum::toValues())->default(RegistrationStatusEnum::WaitingApproval());
+            // $table->enum('registration_status', RegistrationStatusEnum::toValues())->default(RegistrationStatusEnum::WaitingApproval());
             $table->string('phone_number')->nullable();
             $table->text('address')->nullable();
             $table->text('profile_photo_path')->nullable();

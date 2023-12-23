@@ -29,7 +29,7 @@ class User extends Authenticatable
         'address',
         'profile_photo_path',
         'expertise',
-        'registration_status',
+        // 'registration_status',
     ];
 
     /**
@@ -51,7 +51,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'expertise' => UserExpertiseEnum::class,
-        'registration_status' => RegistrationStatusEnum::class,
+        // 'registration_status' => RegistrationStatusEnum::class,
     ];
 
     public function vegetables()
@@ -83,8 +83,8 @@ class User extends Authenticatable
         return UserExpertiseEnum::from($this->attributes['expertise'])->label;
     }
 
-    public function getRegistrationStatusLabelAttribute(){
-        return RegistrationStatusEnum::from($this->attributes['registration_status'])->label;
-    }
+    // public function getRegistrationStatusLabelAttribute(){
+    //     return RegistrationStatusEnum::from($this->attributes['registration_status'])->label;
+    // }
 
 }

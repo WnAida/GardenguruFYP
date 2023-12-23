@@ -97,7 +97,6 @@ class AuthController extends Controller
             'address' => 'nullable|string',
             'profile_photo_path' => 'nullable|string',
             'expertise' => 'nullable|string',
-            'registration_status' => 'nullable|string',
         ]);
 
         // Create a new user
@@ -109,8 +108,9 @@ class AuthController extends Controller
             'address' => $request->input('address'),
             'profile_photo_path' => $request->input('profile_photo_path'),
             'expertise' => $request->input('expertise'),
-            'registration_status' => $request->input('registration_status'),
         ]);
+
+
 
         // Generate token for the registered user
         $token = $user->createToken('registration-token')->plainTextToken;
