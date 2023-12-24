@@ -6,12 +6,14 @@ use App\Actions\Fortify\PasswordValidationRules;
 use App\Enums\RegistrationStatusEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\ProfileUpdateRequest;
+use App\Http\Requests\v1\UserStoreRequest;
 use App\Http\Resources\v1\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
@@ -45,17 +47,17 @@ class AuthController extends Controller
                 // If user email already verified
                 if ($user->hasVerifiedEmail()) {
                     // Already approve by admin
-                    if ($user->registration_status  == (string) RegistrationStatusEnum::Approved()) {
+                    // if ($user->registration_status  == (string) RegistrationStatusEnum::Approved()) {
                         // Create access token
                         $user->accessToken = $user->createToken('auth-token')->plainTextToken;
 
                         // Return response with user resource model
                         return $this->return_api(true, Response::HTTP_OK, null, new UserResource($user), null);
-                    } else if ($user->registration_status == (string) RegistrationStatusEnum::Rejected()) {
-                        return $this->return_api(false, Response::HTTP_UNAUTHORIZED, __("Your account registration has been rejected, please contact the admin."), $userTemp, null);
-                    } else {
-                        return $this->return_api(false, Response::HTTP_UNAUTHORIZED, __("Your account registration has not yet been approved."), $userTemp, null);
-                    }
+                    // } else if ($user->registration_status == (string) RegistrationStatusEnum::Rejected()) {
+                    //     return $this->return_api(false, Response::HTTP_UNAUTHORIZED, __("Your account registration has been rejected, please contact the admin."), $userTemp, null);
+                    // } else {
+                    //     return $this->return_api(false, Response::HTTP_UNAUTHORIZED, __("Your account registration has not yet been approved."), $userTemp, null);
+                    // }
                 } else {
                     // Email not verified
                     return $this->return_api(false, Response::HTTP_FORBIDDEN, trans("auth.email_not_verified"), $userTemp, null);
@@ -86,40 +88,13 @@ class AuthController extends Controller
         }
     }
 
-    public function register(Request $request)
+    public function register(UserStoreRequest $request)
     {
-        // Validation logic for registration inputs
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8',
-            'phone_number' => 'nullable|string',
-            'address' => 'nullable|string',
-            'profile_photo_path' => 'nullable|string',
-            'expertise' => 'nullable|string',
-        ]);
+        $validated = $request->validated();
+        $validated['user']['password'] = Hash::make($validated['user']['password']);
+        $user = User::create($validated['user']);
 
-        // Create a new user
-        $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
-            'phone_number' => $request->input('phone_number'),
-            'address' => $request->input('address'),
-            'profile_photo_path' => $request->input('profile_photo_path'),
-            'expertise' => $request->input('expertise'),
-        ]);
-
-
-
-        // Generate token for the registered user
-        $token = $user->createToken('registration-token')->plainTextToken;
-
-        // Return a response with the user and token information
-        return response()->json([
-            'user' => $user,
-            'token' => $token,
-        ], 201);
+        return $this->return_api(true, Response::HTTP_OK, null, new UserResource($user), null, null);
     }
 
     //UPDATE
