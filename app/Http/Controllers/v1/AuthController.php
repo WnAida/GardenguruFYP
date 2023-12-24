@@ -91,11 +91,12 @@ class AuthController extends Controller
     public function register(UserStoreRequest $request)
     {
         $validated = $request->validated();
-        $validated['user']['password'] = Hash::make($validated['user']['password']);
-        $user = User::create($validated['user']);
+        $validated['password'] = Hash::make($validated['password']); // Updated this line
+        $user = User::create($validated);
 
         return $this->return_api(true, Response::HTTP_OK, null, new UserResource($user), null, null);
     }
+
 
     //UPDATE
     public function update(ProfileUpdateRequest $request,User $user)
