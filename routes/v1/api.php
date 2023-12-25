@@ -27,8 +27,8 @@ Route::name('api.')
     ->middleware('auth:sanctum')
     ->group(function () {
 
-        //User registration
-        Route::post('/register', [AuthController::class, 'register']);
+        // //User registration
+        // Route::post('/register', [AuthController::class, 'register']);
 
         //this use for display profile
         Route::get('/me', [AuthController::class, 'me']);
