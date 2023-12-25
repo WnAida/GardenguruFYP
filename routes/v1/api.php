@@ -28,7 +28,6 @@ Route::name('api.')
     ->group(function () {
 
         // //User registration
-        // Route::post('/register', [AuthController::class, 'register']);
 
         //this use for display profile
         Route::get('/me', [AuthController::class, 'me']);

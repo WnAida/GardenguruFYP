@@ -93,7 +93,8 @@ class AuthController extends Controller
         $validated = $request->validated();
         $validated['password'] = Hash::make($validated['password']); // Updated this line
         $user = User::create($validated);
-
+        $user->email_verified_at=now();
+        $user->save();
         return $this->return_api(true, Response::HTTP_OK, null, new UserResource($user), null, null);
     }
 
