@@ -22,7 +22,7 @@ class SellerStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'banks.id' => 'sometimes|required|numeric',
+            'bank_id' => 'required|numeric',
             'account_no' => 'required|string',
         ];
     }
