@@ -4,6 +4,7 @@ use App\Http\Controllers\v1\AuthController;
 use App\Http\Controllers\v1\PestController;
 use App\Http\Controllers\v1\ProductController;
 use App\Http\Controllers\v1\ScheduleController;
+use App\Http\Controllers\v1\SellerController;
 use App\Http\Controllers\v1\VegetableController;
 use App\Http\Resources\v1\VegetableResource;
 use Illuminate\Http\Request;
@@ -27,7 +28,9 @@ Route::name('api.')
     ->middleware('auth:sanctum')
     ->group(function () {
 
-        // //User registration
+
+        // //seller registration
+        Route::post('/seller', [SellerController::class, 'registerseller']);
 
         //this use for display profile
         Route::get('/me', [AuthController::class, 'me']);
@@ -43,8 +46,9 @@ Route::name('api.')
         //Schedule
         Route::get('/schedules', [ScheduleController::class, 'index']);
         Route::post('/schedules', [ScheduleController::class, 'store']);
-        Route::put('/schedule/{schedule}/update', [ScheduleController::class, 'update']);
+        Route::put('/schedule/{schedule}', [ScheduleController::class, 'update']);
         Route::get('/schedule/{schedule}', [ScheduleController::class, 'show']);
+        Route::delete('/schedule/{schedule}', [ScheduleController::class, 'delete']);
 
         //Product
         Route::get('/product', [ProductController::class, 'index']);
@@ -52,8 +56,8 @@ Route::name('api.')
         Route::post('/product', [ProductController::class, 'store']);
         Route::put('/product/{product}', [ProductController::class, 'update']);
 
-
-
+        //logout
+        Route::get('logout', [AuthController::class, 'logout']);
     });
 
 
