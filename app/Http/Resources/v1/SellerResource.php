@@ -14,6 +14,10 @@ class SellerResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'account_no' => $this->account_no,
+            'bank_id' => $this->bank_id,
+
+        ];
     }
 }

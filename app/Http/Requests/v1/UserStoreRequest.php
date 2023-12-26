@@ -31,7 +31,7 @@ class UserStoreRequest extends FormRequest
                 'phone_number' => 'required|string',
                 'address' => 'required|string',
                 'expertise' => ['required', new EnumRule(UserExpertiseEnum::class)],
-                'profile_photo_path' => 'required|string',
+                'profile_photo_path' => ['required|string','nullable']
                 // 'photo_path' => ['file|mimes:png,jpg,jpeg', 'max:1000', 'nullable'],
             ];
     }
