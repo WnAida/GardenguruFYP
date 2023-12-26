@@ -16,6 +16,7 @@ class ScheduleResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id'=> $this->id,
             'name'=> $this->name,
             'location'=> $this->location,
             'planted_at'=> Carbon::parse($this->planted_at)->format('d M Y'),

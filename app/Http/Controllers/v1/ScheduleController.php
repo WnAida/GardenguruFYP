@@ -62,4 +62,12 @@ class ScheduleController extends Controller
         $data = Schedule::find($schedule->id);
         return $this->return_api(true, Response::HTTP_OK, null, new ScheduleResource($data), null, null);
     }
+
+    //delete
+    public function delete(Schedule $schedule  ){
+        $schedule = Schedule::find($schedule->id);
+        $schedule->delete();
+        return $this->return_api(true, Response::HTTP_ACCEPTED, null, null, null);
+
+    }
 }

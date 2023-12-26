@@ -25,7 +25,7 @@ class ScheduleUpdateRequest extends FormRequest
     {
 
             return [
-                // 'user_id'=> 'required|numeric|exists:users,id',
+                // 'id'=> 'required|numeric|exists:users,id',
                 'name' => 'required|string',
                 'location' => 'required|string',
                 'planted_at' => 'required|string',
