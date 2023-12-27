@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::table('products', function (Blueprint $table) {
             //
             $table
-            ->foreign('user_id')
+            ->foreign('seller_id')
             ->references('id')
-            ->on('users')
+            ->on('sellers')
             ->onUpdate('CASCADE')
-            ->onDelete('CASCADE'); 
+            ->onDelete('CASCADE');
         });
     }
 
