@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +20,7 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->text(10),
-            'user_id'=>User::inRandomOrder()->pluck('id')->first(),
+            'seller_id'=>Seller::inRandomOrder()->pluck('id')->first(),
             'description' => $this->faker->text(20),
             'quantity'=>$this->faker->randomDigit(),
             'price'=>$this->faker->randomNumber(2),

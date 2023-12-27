@@ -30,7 +30,7 @@ class ProductStoreRequest extends FormRequest
             'category'=> ['required', new EnumRule(ProductCategoryEnum::class)],
             'price'=>'required|numeric',
             'min_order_qty'=>'required|numeric',
-            // 'photo_path'=> $this->photo_path,
+            'photo_path'=> 'nullable|mimes:png,jpg',
         ];
     }
 }

@@ -55,6 +55,8 @@ Route::name('api.')
         //Product
         Route::get('/product', [ProductController::class, 'index']);
         Route::get('/product/{product}', [ProductController::class, 'show']);
+        //if user is seller
+        Route::get('/seller-product', [ProductController::class, 'sellerProduct']);
         Route::post('/product', [ProductController::class, 'store']);
         Route::put('/product/{product}', [ProductController::class, 'update']);
 
