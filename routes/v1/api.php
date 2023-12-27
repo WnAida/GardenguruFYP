@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\v1\AuthController;
+use App\Http\Controllers\v1\BankController;
 use App\Http\Controllers\v1\PestController;
 use App\Http\Controllers\v1\ProductController;
 use App\Http\Controllers\v1\ScheduleController;
@@ -31,6 +32,7 @@ Route::name('api.')
 
         // //seller registration
         Route::post('/seller', [SellerController::class, 'registerseller']);
+        Route::get('/bank', [BankController::class, 'index']);
 
         //this use for display profile
         Route::get('/me', [AuthController::class, 'me']);
