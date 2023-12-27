@@ -64,14 +64,9 @@ class User extends Authenticatable
         return $this->hasMany(Schedule::class);
     }
 
-    public function products()
+    public function seller()
     {
-        return $this->hasMany(Product::class);
-    }
-
-    public function sellers()
-    {
-        return $this->hasMany(Seller::class);
+        return $this->hasOne(Seller::class);
     }
 
     public function transactions()
