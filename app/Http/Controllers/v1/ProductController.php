@@ -76,4 +76,12 @@ class ProductController extends Controller
         $product = $id->update($validated);
         return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
     }
+
+       //delete
+       public function delete(Product $product  ){
+        $product = Product::find($product->id);
+        $product->delete();
+        return $this->return_api(true, Response::HTTP_ACCEPTED, null, null, null);
+
+    }
 }
