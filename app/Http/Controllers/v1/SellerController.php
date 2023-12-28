@@ -18,6 +18,10 @@ class SellerController extends Controller
     {
         $validated = $request->validated();
 
+        if(auth()->user()->seller){
+            return $this->return_api(false, Response::HTTP_BAD_REQUEST, 'You already registered as a Seller', null, null);
+        }
+
         $seller = Seller::create([
             'user_id'=>auth()->user()->id,
             'account_no'=>$validated['account_no'],

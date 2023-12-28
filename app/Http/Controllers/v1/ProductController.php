@@ -40,7 +40,12 @@ class ProductController extends Controller
     {
         $take = request()->get('take', 1000);
         $user = auth()->user();
-        $data = $user->seller->products()->paginate($take);
+
+        if($user->seller){
+            $data = $user->seller->products()->paginate($take);
+        }else{
+            return $this->return_api(false, Response::HTTP_BAD_REQUEST, 'Please register as seller first', null, null);
+        }
 
         return $this->return_paginated_api(true, Response::HTTP_OK, null, ProductResource::collection($data), null, $this->apiPaginator($data));
     }
@@ -51,16 +56,16 @@ class ProductController extends Controller
         $validated = $request->validated();
         $seller = auth()->user()->seller;
 
-        if ($request->hasFile('photo_path')){
+        if ($request->hasFile('photo_path')) {
             $photoPath = $request->file('photo_path')->store('', 'products');
             $validated['photo_path'] = $photoPath;
         }
 
         // $validated['user_id'] = $validated['users']['id'];
 
-        if($seller){
+        if ($seller) {
             $product = $seller->products()->create($validated);
-        }else{
+        } else {
             return $this->return_api(false, Response::HTTP_BAD_REQUEST, 'You are not a seller', null, null);
         }
 
@@ -77,11 +82,11 @@ class ProductController extends Controller
         return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
     }
 
-       //delete
-       public function delete(Product $product  ){
+    //delete
+    public function delete(Product $product)
+    {
         $product = Product::find($product->id);
         $product->delete();
         return $this->return_api(true, Response::HTTP_ACCEPTED, null, null, null);
-
     }
 }
