@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class PaymentResource extends Resource
 {
     protected static ?string $model = Payment::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-collection';
     protected static bool $shouldRegisterNavigation = false;
 

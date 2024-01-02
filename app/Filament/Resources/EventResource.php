@@ -23,6 +23,7 @@ class EventResource extends Resource
 {
     protected static ?string $navigationGroup = 'Schedule Tracking';
     protected static ?string $model = Event::class;
+    protected static bool $shouldRegisterNavigation = false;
 
     protected static ?string $navigationIcon = 'heroicon-o-clock';
 

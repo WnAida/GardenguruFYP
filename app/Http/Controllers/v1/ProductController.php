@@ -57,7 +57,7 @@ class ProductController extends Controller
         $seller = auth()->user()->seller;
 
         if ($request->hasFile('photo_path')) {
-            $photoPath = $request->file('photo_path')->store('', 'products');
+            $photoPath = $request->file('photo_path')->store('', 'public');
             $validated['photo_path'] = $photoPath;
         }
 
