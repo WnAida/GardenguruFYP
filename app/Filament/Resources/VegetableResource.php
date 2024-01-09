@@ -29,7 +29,13 @@ class VegetableResource extends Resource
         return $form
             ->schema([
                 // TextInput::make('user.created_at'),
-                FileUpload::make('photo'),
+                FileUpload::make('photo')
+                    ->disk('public')
+                    ->visibility('public')
+                    ->image()
+                    ->minSize(512)
+                    ->maxSize(1024),
+
                 TextInput::make('name'),
                 TextArea::make('description'),
                 // TextArea::make('guidances.name')
@@ -44,7 +50,7 @@ class VegetableResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                ->label('Vegetable Name'),
+                    ->label('Vegetable Name'),
                 TextColumn::make('description')->limit(15),
                 // TextColumn::make('profile_photo_path')
                 // ->limit(10),
