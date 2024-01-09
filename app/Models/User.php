@@ -64,6 +64,11 @@ class User extends Authenticatable
         return $this->hasMany(Schedule::class);
     }
 
+    public function isSeller(): bool
+    {
+        return $this->seller()->exists();
+    }
+
     public function seller()
     {
         return $this->hasOne(Seller::class);

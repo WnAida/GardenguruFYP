@@ -26,6 +26,10 @@ class UserResource extends JsonResource
             "access_token" => $this->when($this->id == auth()->id(), function () {
                 return $this->accessToken;
             }),
+            // Only for seller
+            'seller' => $this->when($this->isSeller(), function () {
+                return new SellerResource($this->seller);
+            }),
         ];
     }
 }
