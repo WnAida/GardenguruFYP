@@ -13,7 +13,6 @@ class Seller extends Model
         'user_id',
         'bank_id',
         'account_no',
-        'business_contact',
     ];
 
     public function user()

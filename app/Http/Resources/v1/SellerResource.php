@@ -16,9 +16,7 @@ class SellerResource extends JsonResource
     {
         return [
             'account_no' => $this->account_no,
-            'business_contact' => $this->business_contact,
             'bank_id' => $this->bank_id,
-
         ];
     }
 }

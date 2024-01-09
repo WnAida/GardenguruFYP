@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('business_contact')->comment('link')->nullable();
             $table->enum('expertise', UserExpertiseEnum::toValues())->default(UserExpertiseEnum::Beginner());
             // $table->enum('registration_status', RegistrationStatusEnum::toValues())->default(RegistrationStatusEnum::WaitingApproval());
             $table->string('phone_number')->nullable();

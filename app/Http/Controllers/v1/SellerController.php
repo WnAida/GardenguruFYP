@@ -25,9 +25,12 @@ class SellerController extends Controller
         $seller = Seller::create([
             'user_id'=>auth()->user()->id,
             'account_no'=>$validated['account_no'],
-            'business_contact'=>$validated['business_contact'],
             'bank_id' => $validated['bank_id'],
         ]);
+
+        $seller->user->update(['business_contact' => $validated['user']['business_contact']]);
+        $seller->save();
+
         return $this->return_api(true, Response::HTTP_OK, null, null, null, null);
     }
 }
