@@ -32,10 +32,8 @@ class VegetableResource extends Resource
                 FileUpload::make('photo')
                     ->disk('public')
                     ->visibility('public')
-                    ->image()
-                    ->minSize(512)
-                    ->maxSize(1024),
-
+                    ->image(),
+                    
                 TextInput::make('name'),
                 TextArea::make('description'),
                 // TextArea::make('guidances.name')
