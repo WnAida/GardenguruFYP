@@ -65,6 +65,7 @@ class ProductController extends Controller
 
         if ($seller) {
             $product = $seller->products()->create($validated);
+            $product->save;
         } else {
             return $this->return_api(false, Response::HTTP_BAD_REQUEST, 'You are not a seller', null, null);
         }
