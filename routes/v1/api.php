@@ -59,6 +59,7 @@ Route::name('api.')
         Route::get('/seller-product', [ProductController::class, 'sellerProduct']);
         Route::post('/product', [ProductController::class, 'store']);
         Route::put('/product/{product}', [ProductController::class, 'update']);
+        Route::delete('/product/{product}', [ProductController::class, 'delete']);
 
         //logout
         Route::get('logout', [AuthController::class, 'logout']);

@@ -29,6 +29,7 @@ class ScheduleResource extends Resource
     protected static ?string $navigationGroup = 'Schedule Tracking';
     protected static ?string $model = Schedule::class;
     protected static ?string $navigationIcon = 'heroicon-o-archive';
+    protected static bool $shouldRegisterNavigation = false;
 
     public static function form(Form $form): Form
     {
