@@ -22,6 +22,7 @@ class SellerFactory extends Factory
             'user_id'=>User::inRandomOrder()->pluck('id')->first(),
             'bank_id'=>Bank::inRandomOrder()->pluck('id')->first(),
             'account_no' => $this->faker->bankAccountNumber(),
+            'business_contact' => $this->faker->text(),
         ];
     }
 }
