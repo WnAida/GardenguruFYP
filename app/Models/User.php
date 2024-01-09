@@ -29,7 +29,7 @@ class User extends Authenticatable
         'address',
         'profile_photo_path',
         'expertise',
-        // 'registration_status',
+        'business_contact',
     ];
 
     /**

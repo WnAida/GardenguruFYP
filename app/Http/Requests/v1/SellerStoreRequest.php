@@ -24,7 +24,7 @@ class SellerStoreRequest extends FormRequest
         return [
             'bank_id' => 'required|numeric',
             'account_no' => 'required|string',
-            'user.business_contact' => 'required|string',
+            'business_contact' => 'required|string',
         ];
     }
 }

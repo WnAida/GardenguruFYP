@@ -28,7 +28,7 @@ class SellerController extends Controller
             'bank_id' => $validated['bank_id'],
         ]);
 
-        $seller->user->update(['business_contact' => $validated['user']['business_contact']]);
+        $result = $seller->user->update(['business_contact' => $validated['business_contact']]);
         $seller->save();
 
         return $this->return_api(true, Response::HTTP_OK, null, null, null, null);
