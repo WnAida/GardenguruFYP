@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('bank_id');
-            // $table->string('business_contact');
+            $table->string('business_contact')->comment('link');
             $table->string('phone_number')->nullable();
             $table->timestamps();
         });
